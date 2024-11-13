@@ -1,0 +1,412 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="prediction-container">
+    <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-gray-900 mb-3">Cancer Prediction Tool</h1>
+        <p class="text-gray-600 max-w-2xl mx-auto">
+            Enter the tumor characteristics below to get an accurate prediction. Our advanced machine learning model will analyze the data and provide results.
+        </p>
+    </div>
+
+    <form action="{{ url_for('predict') }}" method="post" class="prediction-form">
+        <!-- Mean Values Section -->
+        <div class="feature-section" x-data="{ isOpen: true }">
+            <div class="flex justify-between items-center cursor-pointer mb-4" @click="isOpen = !isOpen">
+                <h2 class="flex items-center text-xl font-semibold">
+                    <i class="fas fa-chart-line mr-2 text-indigo-600"></i>
+                    Mean Values
+                </h2>
+                <i class="fas" :class="isOpen ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+            </div>
+            
+            <div x-show="isOpen" class="feature-grid mt-4">
+                <div class="form-group">
+                    <label for="radius_mean">Radius Mean</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-ruler-combined"></i>
+                        </span>
+                        <input type="number" step="0.01" id="radius_mean" name="radius_mean" 
+                               required placeholder="Enter radius mean">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="texture_mean">Texture Mean</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-wave-square"></i>
+                        </span>
+                        <input type="number" step="0.01" id="texture_mean" name="texture_mean" 
+                               required placeholder="Enter texture mean">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="perimeter_mean">Perimeter Mean</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-circle"></i>
+                        </span>
+                        <input type="number" step="0.01" id="perimeter_mean" name="perimeter_mean" 
+                               required placeholder="Enter perimeter mean">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="area_mean">Area Mean</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-vector-square"></i>
+                        </span>
+                        <input type="number" step="0.01" id="area_mean" name="area_mean" 
+                               required placeholder="Enter area mean">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="smoothness_mean">Smoothness Mean</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-water"></i>
+                        </span>
+                        <input type="number" step="0.000001" id="smoothness_mean" name="smoothness_mean" 
+                               required placeholder="Enter smoothness mean">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="compactness_mean">Compactness Mean</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-compress-arrows-alt"></i>
+                        </span>
+                        <input type="number" step="0.000001" id="compactness_mean" name="compactness_mean" 
+                               required placeholder="Enter compactness mean">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="concavity_mean">Concavity Mean</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-chart-area"></i>
+                        </span>
+                        <input type="number" step="0.000001" id="concavity_mean" name="concavity_mean" 
+                               required placeholder="Enter concavity mean">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="concave_points_mean">Concave Points Mean</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-dot-circle"></i>
+                        </span>
+                        <input type="number" step="0.000001" id="concave_points_mean" name="concave_points_mean" 
+                               required placeholder="Enter concave points mean">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="symmetry_mean">Symmetry Mean</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-equals"></i>
+                        </span>
+                        <input type="number" step="0.000001" id="symmetry_mean" name="symmetry_mean" 
+                               required placeholder="Enter symmetry mean">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="fractal_dimension_mean">Fractal Dimension Mean</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-cube"></i>
+                        </span>
+                        <input type="number" step="0.000001" id="fractal_dimension_mean" name="fractal_dimension_mean" 
+                               required placeholder="Enter fractal dimension mean">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SE Values Section -->
+        <div class="feature-section" x-data="{ isOpen: true }">
+            <div class="flex justify-between items-center cursor-pointer mb-4" @click="isOpen = !isOpen">
+                <h2 class="flex items-center text-xl font-semibold">
+                    <i class="fas fa-calculator mr-2 text-indigo-600"></i>
+                    Standard Error Values
+                </h2>
+                <i class="fas" :class="isOpen ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+            </div>
+            
+            <div x-show="isOpen" class="feature-grid mt-4">
+                <div class="form-group">
+                    <label for="radius_se">Radius SE</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-ruler-combined"></i>
+                        </span>
+                        <input type="number" step="0.01" id="radius_se" name="radius_se" 
+                               required placeholder="Enter radius SE">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="texture_se">Texture SE</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-wave-square"></i>
+                        </span>
+                        <input type="number" step="0.01" id="texture_se" name="texture_se" 
+                               required placeholder="Enter texture SE">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="perimeter_se">Perimeter SE</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-circle"></i>
+                        </span>
+                        <input type="number" step="0.01" id="perimeter_se" name="perimeter_se" 
+                               required placeholder="Enter perimeter SE">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="area_se">Area SE</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-vector-square"></i>
+                        </span>
+                        <input type="number" step="0.01" id="area_se" name="area_se" 
+                               required placeholder="Enter area SE">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="smoothness_se">Smoothness SE</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-water"></i>
+                        </span>
+                        <input type="number" step="0.000001" id="smoothness_se" name="smoothness_se" 
+                               required placeholder="Enter smoothness SE">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="compactness_se">Compactness SE</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-compress-arrows-alt"></i>
+                        </span>
+                        <input type="number" step="0.000001" id="compactness_se" name="compactness_se" 
+                               required placeholder="Enter compactness SE">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="concavity_se">Concavity SE</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-chart-area"></i>
+                        </span>
+                        <input type="number" step="0.000001" id="concavity_se" name="concavity_se" 
+                               required placeholder="Enter concavity SE">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="concave_points_se">Concave Points SE</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-dot-circle"></i>
+                        </span>
+                        <input type="number" step="0.000001" id="concave_points_se" name="concave_points_se" 
+                               required placeholder="Enter concave points SE">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="symmetry_se">Symmetry SE</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-equals"></i>
+                        </span>
+                        <input type="number" step="0.000001" id="symmetry_se" name="symmetry_se" 
+                               required placeholder="Enter symmetry SE">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="fractal_dimension_se">Fractal Dimension SE</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-cube"></i>
+                        </span>
+                        <input type="number" step="0.000001" id="fractal_dimension_se" name="fractal_dimension_se" 
+                               required placeholder="Enter fractal dimension SE">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Worst Values Section -->
+        <div class="feature-section" x-data="{ isOpen: true }">
+            <div class="flex justify-between items-center cursor-pointer mb-4" @click="isOpen = !isOpen">
+                <h2 class="flex items-center text-xl font-semibold">
+                    <i class="fas fa-exclamation-triangle mr-2 text-indigo-600"></i>
+                    Worst Values
+                </h2>
+                <i class="fas" :class="isOpen ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+            </div>
+            
+            <div x-show="isOpen" class="feature-grid mt-4">
+                <div class="form-group">
+                    <label for="radius_worst">Radius Worst</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-ruler-combined"></i>
+                        </span>
+                        <input type="number" step="0.01" id="radius_worst" name="radius_worst" 
+                               required placeholder="Enter radius worst">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="texture_worst">Texture Worst</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-wave-square"></i>
+                        </span>
+                        <input type="number" step="0.01" id="texture_worst" name="texture_worst" 
+                               required placeholder="Enter texture worst">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="perimeter_worst">Perimeter Worst</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-circle"></i>
+                        </span>
+                        <input type="number" step="0.01" id="perimeter_worst" name="perimeter_worst" 
+                               required placeholder="Enter perimeter worst">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="area_worst">Area Worst</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-vector-square"></i>
+                        </span>
+                        <input type="number" step="0.01" id="area_worst" name="area_worst" 
+                               required placeholder="Enter area worst">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="smoothness_worst">Smoothness Worst</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-water"></i>
+                        </span>
+                        <input type="number" step="0.000001" id="smoothness_worst" name="smoothness_worst" 
+                               required placeholder="Enter smoothness worst">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="compactness_worst">Compactness Worst</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-compress-arrows-alt"></i>
+                        </span>
+                        <input type="number" step="0.000001" id="compactness_worst" name="compactness_worst" 
+                               required placeholder="Enter compactness worst">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="concavity_worst">Concavity Worst</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-chart-area"></i>
+                        </span>
+                        <input type="number" step="0.000001" id="concavity_worst" name="concavity_worst" 
+                               required placeholder="Enter concavity worst">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="concave_points_worst">Concave Points Worst</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-dot-circle"></i>
+                        </span>
+                        <input type="number" step="0.000001" id="concave_points_worst" name="concave_points_worst" 
+                               required placeholder="Enter concave points worst">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="symmetry_worst">Symmetry Worst</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-equals"></i>
+                        </span>
+                        <input type="number" step="0.000001" id="symmetry_worst" name="symmetry_worst" 
+                               required placeholder="Enter symmetry worst">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="fractal_dimension_worst">Fractal Dimension Worst</label>
+                    <div class="relative">
+                        <span class="input-icon">
+                            <i class="fas fa-cube"></i>
+                        </span>
+                        <input type="number" step="0.000001" id="fractal_dimension_worst" name="fractal_dimension_worst" 
+                               required placeholder="Enter fractal dimension worst">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit Section -->
+        <div class="submit-section mt-8 text-center">
+            <button type="submit" class="submit-button group inline-flex items-center px-6 py-3 text-lg">
+                <i class="fas fa-microscope mr-2 group-hover:scale-110 transition-transform"></i>
+                Get Prediction
+                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+            </button>
+            
+            <p class="text-gray-500 mt-4 text-sm">
+                <i class="fas fa-info-circle mr-1"></i>
+                All fields are required for accurate prediction
+            </p>
+        </div>
+    </form>
+</div>
+
+<!-- Loading overlay -->
+<div id="loading-overlay" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden flex items-center justify-center z-50">
+    <div class="bg-white p-6 rounded-lg shadow-xl">
+        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
+        <p class="mt-4 text-gray-600">Processing your data...</p>
+    </div>
+</div>
+
+<!-- Form handling script -->
+<script>
+document.querySelector('form').addEventListener('submit', function() {
+    document.getElementById('loading-overlay').classList.remove('hidden');
+});
+</script>
+{% endblock %}

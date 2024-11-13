@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Prediction History{% endblock %}
+
+{% block content %}
+<div class="history-container">
+    <div class="text-center mb-8">
+        <i class="fas fa-history text-4xl text-indigo-600 mb-4"></i>
+        <h1 class="text-2xl font-bold mb-2">Your Prediction History</h1>
+        <p class="text-gray-600">Review your past predictions and their results</p>
+    </div>
+
+    {% if predictions %}
+        <div class="history-list">
+            {% for prediction in predictions %}
+            <div class="history-item {% if prediction.prediction == 'Malignant' %}border-l-4 border-red-500{% else %}border-l-4 border-green-500{% endif %}">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-2 {% if prediction.prediction == 'Malignant' %}text-red-600{% else %}text-green-600{% endif %}">
+                            {{ prediction.prediction }}
+                        </h3>
+                        <p class="text-gray-600">
+                            <i class="fas fa-percentage mr-1"></i>
+                            Confidence: {{ "%.2f"|format(prediction.probability) }}%
+                        </p>
+                    </div>
+                    <div class="text-sm text-gray-500">
+                        <i class="far fa-clock mr-1"></i>
+                        {{ prediction.timestamp.strftime('%Y-%m-%d %H:%M') }}
+                    </div>
+                </div>
+                
+                <div class="mt-4 grid grid-cols-3 gap-4 text-sm">
+                    <div class="text-gray-600">
+                        <i class="fas fa-ruler mr-1"></i>
+                        Radius: {{ "%.2f"|format(prediction.features.radius_mean) }}
+                    </div>
+                    <div class="text-gray-600">
+                        <i class="fas fa-draw-polygon mr-1"></i>
+                        Area: {{ "%.2f"|format(prediction.features.area_mean) }}
+                    </div>
+                    <div class="text-gray-600">
+                        <i class="fas fa-circle-notch mr-1"></i>
+                        Smoothness: {{ "%.4f"|format(prediction.features.smoothness_mean) }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="text-center py-8">
+            <div class="text-gray-400 mb-4">
+                <i class="fas fa-folder-open text-6xl"></i>
+            </div>
+            <p class="text-gray-600 mb-4">No predictions in your history yet.</p>
+            <a href="{{ url_for('home') }}" class="submit-button">
+                <i class="fas fa-plus mr-2"></i>
+                Make Your First Prediction
+            </a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

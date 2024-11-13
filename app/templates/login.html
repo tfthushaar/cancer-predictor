@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="text-center">
+        <i class="fas fa-heartbeat text-4xl text-indigo-600 mb-4"></i>
+        <h1 class="text-2xl font-bold mb-2">Welcome Back</h1>
+        <p class="text-gray-600">Sign in to your account</p>
+    </div>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    <i class="fas fa-info-circle mr-2"></i>{{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <form method="POST" action="{{ url_for('login') }}" class="auth-form">
+        <div class="form-group">
+            <label for="email">
+                <i class="fas fa-envelope mr-2"></i>Email
+            </label>
+            <input type="email" id="email" name="email" required 
+                   class="focus:ring-2 focus:ring-indigo-500">
+        </div>
+        <div class="form-group">
+            <label for="password">
+                <i class="fas fa-lock mr-2"></i>Password
+            </label>
+            <input type="password" id="password" name="password" required
+                   class="focus:ring-2 focus:ring-indigo-500">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="submit-button w-full">
+                <i class="fas fa-sign-in-alt mr-2"></i>Login
+            </button>
+        </div>
+        <p class="auth-links">
+            Don't have an account? 
+            <a href="{{ url_for('register') }}" class="font-medium">
+                Register here
+            </a>
+        </p>
+    </form>
+</div>
+{% endblock %}

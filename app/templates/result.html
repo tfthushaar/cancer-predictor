@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Prediction Result{% endblock %}
+
+{% block content %}
+<div class="result-container">
+    <div class="mb-6">
+        <i class="fas fa-clipboard-check text-4xl text-indigo-600 mb-4"></i>
+        <h1 class="text-2xl font-bold mb-2">Prediction Result</h1>
+    </div>
+    
+    <div class="result-card {% if prediction == 'Malignant' %}malignant{% else %}benign{% endif %}">
+        <div class="text-3xl font-bold mb-4 {% if prediction == 'Malignant' %}text-red-600{% else %}text-green-600{% endif %}">
+            {{ prediction }}
+        </div>
+        
+        <div class="flex justify-center items-center space-x-4">
+            <div class="text-gray-600">
+                <i class="fas fa-percentage mr-2"></i>
+                Confidence
+            </div>
+            <div class="text-2xl font-semibold">
+                {{ probability }}%
+            </div>
+        </div>
+    </div>
+    
+    <div class="mt-8 space-y-4">
+        <button onclick="window.location.href='{{ url_for('home') }}'" 
+                class="submit-button w-full">
+            <i class="fas fa-redo mr-2"></i>
+            Make Another Prediction
+        </button>
+        
+        <button onclick="window.location.href='{{ url_for('history') }}'" 
+                class="w-full px-4 py-2 text-indigo-600 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors">
+            <i class="fas fa-history mr-2"></i>
+            View History
+        </button>
+    </div>
+</div>
+{% endblock %}

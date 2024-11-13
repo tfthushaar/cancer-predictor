@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "cancer-predictor-69b4f",
+  "private_key_id": "0fc46bb0550178de3e7f157a0d7c5e615b9c6064",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEuwIBADANBgkqhkiG9w0BAQEFAASCBKUwggShAgEAAoIBAQD1CpE2Pf3sid5z\nkY+C2hKMcJyF6dE6rLxvHmG5NAogrURDEvpiJdQaHfpqqFPpMxvvgYn8nJenT8Aw\nTn5e6vJhwTlKVDUWwneqDgEusPtInvJqKZRJIXd/akbq0tFxbVdCrHN3PvXCgO8Q\n7bMo5hPUf8+82oY67YLcT9ckLs7c6/a3P5uNNLDIJT4EJ7KS8t9eQjGmngEDjD+D\n4/02wtuo1CkA7HJI1QBP6tP/eEvL/GVlUc2ijztkrIaRZfrw4NqgLQuH5rgsQwgn\nznvq/VVAaC7p1c52UDs9mH5ytzat+R5ca8ZvOmYDtlVuFB2WDX6V/Eu2+WNm2l4j\n//dHKDS3AgMBAAECgf9zDMUJ/GaVtETBmWPrH3iGf65ixPyiZTnlblp7d3tJ1Jvu\nlJmOHmsO3+Vh+DnpvDhV6htP+BbuohKt0e7RBtv1QCxkA2tGzB7fSLQHWwmJOfDs\n53nDpgZaFkJkVAP6plfpXsjnXsNh6JQn5lug1GXIsXApdabOeH9ZhN08iI8bnnW0\nF0aodNYta5Dnrj2MhEqT+30gd0NxFvcHXaEsScKnEBZ0g8rNjpNCjU8SBxGWhY4L\njA3NDANRagBF7g/2hnL70gVX1Yf1gnZT52k5iIpNwy5nPRkeQ/O52xNt3mWFzW19\nbO9oi8aruVbv0t6DCYznYyjfKrleSKdb7wxGgIkCgYEA/tS/CoE5xT/Txp9VgCt0\n3Jhwjs657FPwP5/LyTwojv8AvJIbgxnZrD+LaFo0RtujMun0VMhDdvsbBd9m76cy\nAQieeMfRvUIA25sE84DsdsSUEJ3lBzLq73jSaFMZxHaE9zihIIl1XEvqHN1Wywae\nNONuYUZWOLk7RJ4ftRk87M8CgYEA9ipTG/TU2j22BLC+deBo5DRXrGvAyPNmNcnE\ngv2maeW9tc83Buct1SXR1VQAohMjCK2/bWXPurp/Csztc7+z2GlSBkjcnSBixfyI\npSa1C10TZmP1dGAViRmy65j46o7OERbwHKaf46lO7Pf6sbh0rGiP6QyU7M5DHWGk\nyeoTw5kCgYBw5fpZghUBIZ0Gk1LC/P3CObssWcQfQrTey0HyvrdNWwaNhMGxnING\nf8SYj9Y3SlmMVgBMi4jwLqGzQV2OcWmC8bmb0xNGIPbWVGCmLQkWOVNL5Vgxj0ps\nm//D/oUc+FFCYhFoo92d7XgkH5+zRRRUZCpj6FCMwuvSI6fyiOLoGwKBgGhBTKmO\na4dyk2AxKrjprgLYWDlh+WgiDavCJEQGATDgaBRUCk4WIscfGVtsFEiQKkpGq8g9\nUlkXGy8L05UuH5EMKf0XZrf1O1/2sDihyBNj/A9lTlNXTkeeZrR5ORK+IHAEcvTv\nbNASqKab78TNBjzum+Rru7b/NFWBQTVyuaQhAoGBAL2gTZ6XsmXQEZ48c72ALZe5\n2rTPV9Ozswt1WpYbfGXzs7ZAZW4SIkZdcyup0azh3VVQIWoc71sh6bLmQkdCrtEU\nd5dY1nvPArCStgP0rcpK6PQMGCujrkKpxborYAErBFVLB/VxsUqLxcDu5IC3HypW\nAjQUKoyXMyMhPV/WQ55G\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-vzbsi@cancer-predictor-69b4f.iam.gserviceaccount.com",
+  "client_id": "111577949637273240289",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-vzbsi%40cancer-predictor-69b4f.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
